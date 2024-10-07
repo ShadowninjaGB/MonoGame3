@@ -34,4 +34,4 @@ namespace MonoGame2.Scripts
             graphicsDevice.Clear(Color.White);
         }
     }
-}
+} // egg
