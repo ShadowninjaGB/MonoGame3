@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.DXGI;
 
 namespace MonoGame2.Scripts
 {
@@ -11,14 +12,37 @@ namespace MonoGame2.Scripts
             
         }
 
-        public void Chase() 
-        { 
+        public void Chase(Player player)
+        {
+            if (player.GetCurPos().X < CurPos.X) 
+            {
+                Left();
+            }
+            
+            if (player.GetCurPos().Y > CurPos.Y)
+            {
+                up();
+            }
+
+            if (player.GetCurPos().X > CurPos.X)
+            {
+                Right();
+            }
+
+            if (player.GetCurPos().Y < CurPos.Y)
+            {
+                Down();
+            }
 
         }
 
-        public bool Caught() 
+        public bool Caught(Player player) 
         {
-            return false;
+            if (player.GetCurPos() == CurPos)
+            {
+                return true;
+            }
+            else return false;
         }
 
 

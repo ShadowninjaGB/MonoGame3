@@ -15,7 +15,9 @@ namespace MonoGame2.Scripts
 
         public Monster(Vector2 posititon) 
         {
-            CurPos = posititon;
+            StartPos = posititon;   
+            CurPos = StartPos;
+
         }
 
 
@@ -26,7 +28,7 @@ namespace MonoGame2.Scripts
 
         public void ResetStartPos()
         {
-            StartPos = CurPos;
+            CurPos = StartPos;
         }
 
 
