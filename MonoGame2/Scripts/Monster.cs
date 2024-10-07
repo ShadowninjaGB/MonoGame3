@@ -15,19 +15,11 @@ namespace MonoGame2.Scripts
         private protected Vector2 CurPos;
 
 
-        private void MoveCreature(Vector2 posititon) 
+        public Monster(Vector2 posititon) 
         {
-            
             CurPos = posititon;
-
-
-
         }
 
-        private void Start()
-        {
-            CurPos=StartPos;
-        }
 
         public Vector2 GetCurPos() 
         {
