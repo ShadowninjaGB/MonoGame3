@@ -1,18 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace MonoGame2.Scripts
 {
     internal class Enemy : Monster
     {
-        private Enemy(Vector2 position, int lives) : base(position)
+        public Enemy(Vector2 position) : base(position)
         {
-            return;
+            
         }
+
+        public void Chase() 
+        { 
+
+        }
+
+        public bool Caught() 
+        {
+            return false;
+        }
+
 
     }
 }
