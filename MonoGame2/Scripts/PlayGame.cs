@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
+using Microsoft.Xna.Framework.Content;
 
 namespace MonoGame2.Scripts
 {
@@ -20,6 +21,12 @@ namespace MonoGame2.Scripts
 
         }
 
+        public void LoadContet (ContentManager contentManager)
+        {
+            player.LocalContent(contentManager, "Chara6");
+            enemy.LocalContent(cm, "Orc2");
+        }
+
         public E_Gamestates Update() 
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -30,6 +37,31 @@ namespace MonoGame2.Scripts
             {
                 return E_Gamestates.GAME_OVER;
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.Left) || Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                player.Left();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Up) || Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                player.up();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right) || Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                player.Right();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Down) || Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                player.Down();
+            }
+
+
+
+
+
+
+
+
+
             enemy.Chase(player);
             System.Console.WriteLine("Player Pos = " + player.GetCurPos()+ "Player Lives"+ player.GetLives());
             System.Console.WriteLine("Enemy Pos = " + enemy.GetCurPos());
@@ -52,9 +84,13 @@ namespace MonoGame2.Scripts
             
         }
 
-        public void Draw(GraphicsDevice graphicsDevice)
+        public void Draw(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             graphicsDevice.Clear(Color.Green);
+            player.Draw(spriteBatch, new Rectangle(0, 0, 52, 72));
+            enemy.Draw(spriteBatch, new Rectangle(0, 0, 52, 72));
+            spriteBatch.End();
+
         }
     }
 }

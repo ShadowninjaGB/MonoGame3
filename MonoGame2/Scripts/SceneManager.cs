@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SharpDX.XAudio2;
@@ -43,12 +44,18 @@ namespace MonoGame2.Scripts
             }
         }
 
-        public void Draw(GraphicsDevice graphics) 
+
+        public void LoadContent (ContentManager contentManager)
+        {
+            play.LoadContet(contentManager);
+        }
+
+        public void Draw(GraphicsDevice graphics, SpriteBatch spriteBatch) 
         {
             switch (gamestate)
             {
                 case E_Gamestates.PLAY:
-                    play.Draw(graphics);
+                    play.Draw(graphics, spriteBatch);
                     break;
                 case E_Gamestates.GAME_OVER:
                     gameover.Draw(graphics);
@@ -57,6 +64,8 @@ namespace MonoGame2.Scripts
                     menu.Draw(graphics);
                     break;
             }
+            spriteBatch.Begin();
+            spriteBatch.End();
         }
 
         private void SwitchState(E_Gamestates state)
