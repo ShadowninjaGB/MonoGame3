@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame2.Scripts;
+using Microsoft.Xna.Framework.Content;
 
 namespace MonoGame2
 {
@@ -24,16 +25,18 @@ namespace MonoGame2
 
         protected override void Initialize()
         {
+            _sceneManager = new SceneManager(wh);
             // TODO: Add your initialization logic here
             base.Initialize();
-            _sceneManager = new SceneManager(wh);
+
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _sceneManager.LoadContent(Content);
 
-            // TODO: use this.Content to load your game content here
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -49,7 +52,7 @@ namespace MonoGame2
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _sceneManager.Draw(GraphicsDevice);
+            _sceneManager.Draw(GraphicsDevice, _spriteBatch);
 
 
             base.Draw(gameTime);

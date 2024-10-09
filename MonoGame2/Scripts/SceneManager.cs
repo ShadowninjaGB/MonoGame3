@@ -29,7 +29,6 @@ namespace MonoGame2.Scripts
         public void Update(Game1 game, GameTime time) 
         {
             double deltatime = time.ElapsedGameTime.TotalSeconds;
-
             switch (gamestate) 
             {
                 case E_Gamestates.PLAY:

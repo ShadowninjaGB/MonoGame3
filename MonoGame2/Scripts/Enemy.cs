@@ -21,7 +21,7 @@ namespace MonoGame2.Scripts
             
             if (player.GetCurPos().Y > CurPos.Y)
             {
-                up();
+                Down();
             }
 
             if (player.GetCurPos().X > CurPos.X)
@@ -31,7 +31,7 @@ namespace MonoGame2.Scripts
 
             if (player.GetCurPos().Y < CurPos.Y)
             {
-                Down();
+                up();
             }
 
         }

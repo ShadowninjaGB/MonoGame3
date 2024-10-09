@@ -24,7 +24,7 @@ namespace MonoGame2.Scripts
         public void LoadContet (ContentManager contentManager)
         {
             player.LocalContent(contentManager, "Chara6");
-            enemy.LocalContent(cm, "Orc2");
+            enemy.LocalContent(contentManager, "Orc2");
         }
 
         public E_Gamestates Update() 
@@ -87,10 +87,10 @@ namespace MonoGame2.Scripts
         public void Draw(GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             graphicsDevice.Clear(Color.Green);
+            spriteBatch.Begin();
             player.Draw(spriteBatch, new Rectangle(0, 0, 52, 72));
             enemy.Draw(spriteBatch, new Rectangle(0, 0, 52, 72));
             spriteBatch.End();
-
         }
     }
 }

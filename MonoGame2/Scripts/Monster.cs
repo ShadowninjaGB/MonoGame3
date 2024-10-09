@@ -9,7 +9,7 @@ namespace MonoGame2.Scripts
     {
         private protected Vector2 StartPos;
         private protected Vector2 CurPos;
-        private protected Texture2D Sprite;
+        protected Texture2D Sprite;
         private protected float movementSpeed = 1.0f;
 
 
@@ -43,12 +43,12 @@ namespace MonoGame2.Scripts
 
         public virtual void up ()
         {
-            CurPos.Y += 1.0f * movementSpeed;
+            CurPos.Y += -1.0f * movementSpeed;
         }
 
         public virtual void Down()
         {
-            CurPos.Y -= 1.0f *movementSpeed;
+            CurPos.Y -= -1.0f *movementSpeed;
         }
         public virtual void Left()
         {
