@@ -10,6 +10,7 @@ namespace MonoGame2.Scripts
         private protected Vector2 StartPos;
         private protected Vector2 CurPos;
         private protected Texture2D Sprite;
+        private protected float movementSpeed = 1.0f;
 
 
         public Monster(Vector2 posititon) 
@@ -42,21 +43,21 @@ namespace MonoGame2.Scripts
 
         public virtual void up ()
         {
-            CurPos.Y += 1.0f;
+            CurPos.Y += 1.0f * movementSpeed;
         }
 
         public virtual void Down()
         {
-            CurPos.Y -= 1.0f;
+            CurPos.Y -= 1.0f *movementSpeed;
         }
         public virtual void Left()
         {
-            CurPos.X -= 1.0f;
+            CurPos.X -= 1.0f * movementSpeed;
         }
 
         public virtual void Right()
         {
-            CurPos.X += 1.0f;
+            CurPos.X += 1.0f * movementSpeed;
         }
 
 
