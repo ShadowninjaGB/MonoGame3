@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace MonoGame2.Scripts
 {
@@ -11,6 +9,7 @@ namespace MonoGame2.Scripts
     {
         private protected Vector2 StartPos;
         private protected Vector2 CurPos;
+        private protected Texture2D Sprite;
 
 
         public Monster(Vector2 posititon) 
@@ -20,6 +19,15 @@ namespace MonoGame2.Scripts
 
         }
 
+        public void LocalContent(ContentManager cm, string name) 
+        {
+            Sprite = cm.Load<Texture2D>(name);
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Rectangle rect)
+        {
+            spriteBatch.Draw(Sprite,CurPos, rect, Color.White);
+        }
 
         public Vector2 GetCurPos() 
         {
@@ -32,21 +40,21 @@ namespace MonoGame2.Scripts
         }
 
 
-        public void up ()
+        public virtual void up ()
         {
             CurPos.Y += 1.0f;
         }
 
-        public void Down()
+        public virtual void Down()
         {
             CurPos.Y -= 1.0f;
         }
-        public void Left()
+        public virtual void Left()
         {
             CurPos.X -= 1.0f;
         }
 
-        public void Right()
+        public virtual void Right()
         {
             CurPos.X += 1.0f;
         }
@@ -54,4 +62,3 @@ namespace MonoGame2.Scripts
 
     }
 }
-// egg 
