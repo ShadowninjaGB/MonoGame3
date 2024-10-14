@@ -10,9 +10,9 @@ namespace MonoGame2.Scripts
         private double totaltime = 0.0f;
 
         private Vector2 screensize;
-        public GameOver(Vector2 dimensions)
+        public GameOver()
         {
-            screensize = dimensions;
+
         }
 
         public E_Gamestates Update(double deltatime)

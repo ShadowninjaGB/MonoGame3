@@ -21,9 +21,9 @@ namespace MonoGame2.Scripts
         public SceneManager(Vector2 vector2)
         {   
             gamestate = E_Gamestates.MENU;
-            menu = new Menu(vector2);
-            gameover = new GameOver(vector2);
-            play = new PlayGame(vector2);;
+      
+            gameover = new GameOver();
+            play = new PlayGame();
         }
 
         public void Update(Game1 game, GameTime time) 
@@ -44,9 +44,10 @@ namespace MonoGame2.Scripts
         }
 
 
-        public void LoadContent (ContentManager contentManager)
+        public void LoadContent (ContentManager contentManager, GraphicsDeviceManager graphicsDeviceManager)
         {
-            play.LoadContet(contentManager);
+            play.LoadContent(contentManager, graphicsDeviceManager);
+            menu = new Menu(play.GetScreenWH());
         }
 
         public void Draw(GraphicsDevice graphics, SpriteBatch spriteBatch) 

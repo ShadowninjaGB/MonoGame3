@@ -11,20 +11,26 @@ namespace MonoGame2.Scripts
         private Enemy enemy;
         private Player player;
         private Vector2 screensize;
-        public PlayGame(Vector2 dimensions)
+        private Level level;
+        public PlayGame()
         {
-            screensize = dimensions;
             player = new Player(new Vector2(200, 200), 3);
             System.Console.WriteLine("Player position = " + player.GetCurPos());
             enemy = new Enemy(new Vector2(50,50));
             System.Console.WriteLine("Enemy position = " + enemy.GetCurPos());
+            level = new Level();
 
         }
 
-        public void LoadContet (ContentManager contentManager)
+        public void LoadContent (ContentManager contentManager, GraphicsDeviceManager graphicsDeviceManager)
         {
             player.LocalContent(contentManager, "Chara6");
             enemy.LocalContent(contentManager, "Orc2");
+            level.LoadContent(contentManager, "Wall1");
+            graphicsDeviceManager.PreferredBackBufferWidth = (int)level.GetLevelSize().X;
+            graphicsDeviceManager.PreferredBackBufferHeight = (int)level.GetLevelSize().Y;
+            graphicsDeviceManager.ApplyChanges();
+
         }
 
         public E_Gamestates Update() 
@@ -54,14 +60,6 @@ namespace MonoGame2.Scripts
                 player.Down();
             }
 
-
-
-
-
-
-
-
-
             enemy.Chase(player);
             System.Console.WriteLine("Player Pos = " + player.GetCurPos()+ "Player Lives"+ player.GetLives());
             System.Console.WriteLine("Enemy Pos = " + enemy.GetCurPos());
@@ -76,11 +74,13 @@ namespace MonoGame2.Scripts
                     player.ResetLives();
                     player.ResetStartPos();
                     enemy.ResetStartPos();
+                    level.ResetLevels();
                     return E_Gamestates.GAME_OVER;
                 }
             }
+            System.Console.WriteLine(player.GetLives());
             return E_Gamestates.PLAY;
-
+            
             
         }
 
@@ -88,9 +88,15 @@ namespace MonoGame2.Scripts
         {
             graphicsDevice.Clear(Color.Green);
             spriteBatch.Begin();
+            level.Draw(spriteBatch);
             player.Draw(spriteBatch, new Rectangle(0, 0, 52, 72));
             enemy.Draw(spriteBatch, new Rectangle(0, 0, 52, 72));
             spriteBatch.End();
+        }
+
+        public Vector2 GetScreenWH()
+        {
+            return level.GetLevelSize();
         }
     }
 }

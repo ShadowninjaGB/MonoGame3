@@ -14,16 +14,16 @@ namespace MonoGame2.Scripts
         private string[] LevelFile;
         private int LevelNum;
 
-        private void SetLevelNumber() 
+        public Level() 
         {
             LevelNum = 1;
             BuildNewLevel();
         }
 
-        private void LoadContent (ContentManager contentManager, string FileName)
+        public void LoadContent (ContentManager contentManager, string FileName)
         {
-            contentManager.Load<Texture2D>(FileName);
-            WallTextureWH = new Vector2 (WallTexture.Bounds.X, WallTexture.Bounds.Y);
+            WallTexture = contentManager.Load<Texture2D>(FileName);
+            WallTextureWH = new Vector2(WallTexture.Width, WallTexture.Height);
         }
 
         private int GetArrayWidth()
@@ -36,7 +36,7 @@ namespace MonoGame2.Scripts
             return LevelFile.Length;
         }
 
-        private Vector2 GetLevelSize()
+        public Vector2 GetLevelSize()
         {
             return new Vector2(GetArrayWidth() * WallTextureWH.X, GetArrayHeight() * WallTextureWH.Y);
         }
@@ -56,21 +56,21 @@ namespace MonoGame2.Scripts
                 Console.WriteLine(line);   
             }
         }
-        private void ResetLevels()
+        public void ResetLevels()
         {
             LevelNum = 1;
             BuildNewLevel();
         }
 
-        private void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < GetArrayWidth(); i++) 
+            for (int col = 0; col < GetArrayWidth(); col++) 
             {
-                for (int j = 0; j < GetArrayHeight(); j++)
+                for (int row = 0; row < GetArrayHeight(); row++)
                 {
-                    if (LevelFile[i] == "W")
+                    if (LevelFile[row][col] == 'W')
                     {
-                        spriteBatch.Draw(WallTexture, new Vector2(WallTexture.Width * i, WallTexture.Height * j), Color.HotPink);
+                        spriteBatch.Draw(WallTexture, new Vector2(WallTexture.Width * col, WallTexture.Height * row), Color.HotPink);
                     }
                 }
             }

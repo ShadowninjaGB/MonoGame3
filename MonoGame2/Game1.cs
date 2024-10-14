@@ -34,9 +34,7 @@ namespace MonoGame2
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _sceneManager.LoadContent(Content);
-
-
+            _sceneManager.LoadContent(Content,_graphics);
         }
 
         protected override void Update(GameTime gameTime)
