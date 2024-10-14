@@ -40,7 +40,7 @@ namespace MonoGame2.Scripts
         {
             if (player.GetCurPos() == CurPos)
             {
-                return true;
+                return true;  
             }
             else return false;
         }
